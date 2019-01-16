@@ -1,0 +1,32 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.11'
+
+    id 'application'
+
+}
+
+
+repositories {
+    jcenter()
+
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+
+    implementation 'com.google.protobuf:protobuf-java:3.6.1'
+
+    implementation 'io.grpc:grpc-all:1.18.0'
+
+    implementation group: 'io.arrow-kt', name: 'arrow-core', version: '0.8.2'
+
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+
+}
+
+
+sourceSets.main.java.srcDirs = ['src/main/kotlin','src/main/java']
+
+mainClassName = 'com.github.jmlb23.todo.server.MainKt'

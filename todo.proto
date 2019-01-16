@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package com.github.jmlb23.todo.server.codegen;
+
+option csharp_namespace = "Com.Github.Jmlb23.Todo.Server.Codegen";
+
+message Todo{
+	int64 id = 1;
+	string content = 2;
+	bool done = 3;
+}
+
+message Error{
+	int32 code = 1;
+	string error_message = 2;
+}
+
+message Success{
+	string message = 1;
+}
+
+message GetTodoRequest{
+	int64 id = 1;
+}
+
+message GetTodoResponse{
+	Todo todo = 1;
+}
+
+
+message GetAllTodosRequest{
+
+}
+
+message GetAllTodosResponse{
+	repeated Todo todo = 1;
+}
+
+
+message UpdateTodoRequest{
+	int64 todoId = 1;
+	Todo todoUpdated = 2;
+}
+
+message UpdateTodoResponse{
+	oneof response{
+		Success success = 1;
+		Error error = 2;
+	}
+}
+
+message RemoveTodoRequest{
+	int64 todoId = 1;
+}
+
+message RemoveTodoResponse{
+	oneof response{
+		Success success = 1;
+		Error error = 2;
+	}
+}
+
+message CreateTodoRequest{
+	Todo todo = 1;
+}
+
+message CreateTodoResponse{
+	oneof response{
+		Success success = 1;
+		Error error = 2;
+	}
+}
+
+service TodoService{
+	rpc GetTodo(GetTodoRequest) returns (GetTodoResponse);
+	rpc GetAllTodos(GetAllTodosRequest) returns (GetAllTodosResponse);
+	rpc UpdateTodo(UpdateTodoRequest) returns (UpdateTodoResponse);
+	rpc RemoveTodo(RemoveTodoRequest) returns (RemoveTodoResponse);
+	rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse);
+}
